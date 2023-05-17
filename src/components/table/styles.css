@@ -1,0 +1,19 @@
+table {
+  border-collapse: collapse;
+  margin: 1rem auto;
+}
+
+thead {
+  background: linear-gradient(
+    180deg,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  color: white;
+}
+
+td,
+th {
+  border: 1px solid black;
+  padding: 5px 10px;
+}

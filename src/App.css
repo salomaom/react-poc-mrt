@@ -1,0 +1,45 @@
+.accordion-container h3 button {
+  width: 100%;
+  background-color: aliceblue;
+  border: none;
+}
+
+.gallery {
+  margin: auto;
+  max-width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-image {
+  height: auto;
+  width: 200px;
+}
+
+.light-box-container {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.light-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #000000;
+  opacity: 0.9;
+  overflow: hidden;
+}
