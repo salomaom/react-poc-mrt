@@ -1,10 +1,12 @@
 import { ButtonHTMLAttributes } from "react";
 
+import { Button_ } from "./styles";
+
 function Button({
   children,
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement>) {
-  return <button {...props}>{children}</button>;
+  return <Button_ {...props}>{children}</Button_>;
 }
 
 export default Button;

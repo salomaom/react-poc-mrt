@@ -2,7 +2,27 @@ import { useState } from "react";
 
 import { useHotkeys } from "react-hotkeys-hook";
 
-import { TriangleLeftIcon, TriangleRightIcon } from "@radix-ui/react-icons";
+import {
+  CgSun,
+  CgEditHighlight,
+  CgArrowsExchangeAlt,
+  CgChevronLeft,
+  CgChevronRight,
+} from "react-icons/cg";
+
+import Slider from "../Slider";
+
+import {
+  Gallery,
+  GalleryTopContainer,
+  Image,
+  LargeImagesContainer,
+  Filters,
+  Filter,
+  FilterDivider,
+  FilterValue,
+  IconStyle,
+} from "./styles";
 
 export type ImageGalleryProps = {
   images: string[];
@@ -44,17 +64,44 @@ function ImageGallery({ images }: ImageGalleryProps) {
   };
   return (
     <>
-      <div className="gallery">
-        {images.map((pic: string, index: number) => (
-          <img
-            onClick={() => openLightBox(index)}
-            className="gallery-image"
-            src={pic}
-            alt={"PIC_" + index}
-            key={"PIC_" + index}
-          />
-        ))}
-      </div>
+      <Gallery>
+        <GalleryTopContainer>
+          <LargeImagesContainer>
+            <Image src={images[0]} alt="Not informed" />
+            <Image src={images[1]} alt="Not informed" />
+          </LargeImagesContainer>
+          <Filters>
+            <Filter>
+              <CgSun style={IconStyle} />
+              <Slider />
+              <FilterValue>90%</FilterValue>
+            </Filter>
+            <FilterDivider />
+            <Filter>
+              <CgEditHighlight style={IconStyle} />
+              <Slider />
+              <FilterValue>90%</FilterValue>
+            </Filter>
+            <FilterDivider />
+            <Filter>
+              <CgArrowsExchangeAlt style={IconStyle} />
+              <Slider />
+              <FilterValue>90%</FilterValue>
+            </Filter>
+          </Filters>
+        </GalleryTopContainer>
+        <LargeImagesContainer>
+          {images.map((pic: string, index: number) => (
+            <Image
+              onClick={() => openLightBox(index)}
+              className="gallery-image"
+              src={pic}
+              alt={"PIC_" + index}
+              key={"PIC_" + index}
+            />
+          ))}
+        </LargeImagesContainer>
+      </Gallery>
 
       {isLightBoxOpen && (
         <>
@@ -65,13 +112,13 @@ function ImageGallery({ images }: ImageGalleryProps) {
               </span>
             </div>
             <div className="light-box">
-              <TriangleLeftIcon onClick={prev} className="left lb-icon" />
+              <CgChevronLeft onClick={prev} className="left lb-icon" />
               <img
                 className="light-box-image"
                 src={currentLightboxImage}
                 alt="one"
               />
-              <TriangleRightIcon onClick={next} className="right lb-icon" />
+              <CgChevronRight onClick={next} className="right lb-icon" />
             </div>
             <span>COUNT</span>
           </div>
