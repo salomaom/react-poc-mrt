@@ -14,6 +14,7 @@ export default defineConfig({
       "@components": resolve(projectRootDir, "./src/components"),
       "@services": resolve(projectRootDir, "./src/services"),
       "@utils": resolve(projectRootDir, "./src/utils"),
+      "@configs": resolve(projectRootDir, "./src/configs"),
     },
   },
   envPrefix: "MRT_",

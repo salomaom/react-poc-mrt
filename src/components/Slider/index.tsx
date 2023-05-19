@@ -1,7 +1,8 @@
 import { Root, Track, Range, Thumb } from "./styles";
+import { SliderProps } from "@radix-ui/react-slider";
 
-const Slider = () => (
-  <Root defaultValue={[50]} max={100} step={1} aria-label="Volume">
+const Slider = ({ ...props }: SliderProps) => (
+  <Root {...props}>
     <Track>
       <Range />
     </Track>

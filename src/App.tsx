@@ -101,7 +101,7 @@ function App() {
 
   return (
     <>
-      <Button onClick={() => (test === 0 ? setTest(1) : setTest(0))}>
+      {/* <Button onClick={() => (test === 0 ? setTest(1) : setTest(0))}>
         TROCA: {keys[test]}
       </Button>
 
@@ -124,9 +124,27 @@ function App() {
             <Button onClick={sendFilter}>Enviar Filtro</Button>
           </Accordion.Content>
         </Accordion.Item>
-      </Accordion.Container>
+      </Accordion.Container> */}
 
-      <ImageGallery images={images} />
+      <div
+        style={{ display: "flex", padding: "50px", backgroundColor: "#F2F2F3" }}
+      >
+        <ImageGallery images={images} />
+
+        <div
+          style={{
+            width: "40%",
+            backgroundColor: "white",
+            margin: "8px",
+            borderRadius: "16px",
+            padding: "16px",
+          }}
+        >
+          <Button onClick={() => (test === 0 ? setTest(1) : setTest(0))}>
+            TROCA: {keys[test]}
+          </Button>
+        </div>
+      </div>
 
       <Table columns={columns} data={data} />
     </>

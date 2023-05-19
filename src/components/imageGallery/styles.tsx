@@ -13,10 +13,12 @@ export const GalleryTopContainer = styled("div", {
   borderRadius: "16px",
 });
 
+export const ImageContainer = styled("div", {
+  margin: "8px",
+});
+
 export const Image = styled("img", {
   borderRadius: "8px",
-  margin: "8px",
-  objectFit: "contain",
 });
 
 export const LargeImagesContainer = styled("div", {
@@ -24,10 +26,10 @@ export const LargeImagesContainer = styled("div", {
   justifyContent: "center",
 });
 
-export const SmallImagesContainer = styled("div", {
-  display: "flex",
-  width: "100%",
-});
+// export const SmallImagesContainer = styled("div", {
+//   display: "flex",
+//   width: "100%",
+// });
 
 export const Filters = styled("div", {
   display: "flex",
@@ -56,4 +58,26 @@ export const FilterValue = styled("p", {
   marginLeft: "8px",
 });
 
-export const IconStyle = { marginRight: "8px", fontSize: "1.5rem" };
+export const IconStyle = { marginRight: "8px", fontSize: "2rem" };
+
+const ChevronStyle = {
+  fontSize: "3rem",
+  color: "white",
+  margin: "24px",
+  cursor: "pointer",
+  position: "absolute",
+  top: "40%",
+};
+
+export const ChevronStyleLeft = {
+  ...ChevronStyle,
+};
+
+export const ChevronStyleRight = {
+  ...ChevronStyle,
+  right: 0,
+};
+
+export const ImageOverlay = styled("img", {
+  margin: "auto",
+});
