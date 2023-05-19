@@ -7,6 +7,8 @@ import {
   UseRowSelectHooks,
 } from "react-table";
 
+import { useHotkeys } from "react-hotkeys-hook";
+
 import "./styles.css";
 
 const IndeterminateCheckbox = forwardRef(
@@ -27,6 +29,8 @@ const IndeterminateCheckbox = forwardRef(
 );
 
 function Table({ columns, data }) {
+  const headerToggleRef = useRef();
+
   const tableInstance = useTable({ columns, data }, useRowSelect, (hooks) => {
     hooks.visibleColumns.push((columns) => [
       // Let's make a column for selection
@@ -36,7 +40,10 @@ function Table({ columns, data }) {
         // to render a checkbox
         Header: ({ getToggleAllRowsSelectedProps }: UseRowSelectHooks) => (
           <div>
-            <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+            <IndeterminateCheckbox
+              {...getToggleAllRowsSelectedProps()}
+              ref={headerToggleRef}
+            />
           </div>
         ),
         // The cell can use the individual row's getToggleRowSelectedProps method
@@ -52,6 +59,10 @@ function Table({ columns, data }) {
   });
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
+
+  useHotkeys("ctrl+a", () => headerToggleRef.current.click(), {
+    preventDefault: true,
+  });
 
   return (
     <table {...getTableProps()}>
