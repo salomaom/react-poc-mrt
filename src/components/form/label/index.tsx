@@ -1,5 +1,7 @@
-import { Label as RadixLabel, FormLabelProps } from "@radix-ui/react-form";
+import { FormLabelProps } from "@radix-ui/react-form";
+
+import { Label_ } from "./styles";
 
 export default function Label({ children }: FormLabelProps) {
-  return <RadixLabel>{children}</RadixLabel>;
+  return <Label_>{children}</Label_>;
 }

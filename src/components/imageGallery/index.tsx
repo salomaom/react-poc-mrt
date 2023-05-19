@@ -163,13 +163,12 @@ function ImageGallery({ images }: ImageGalleryProps) {
         </GalleryTopContainer>
         <LargeImagesContainer>
           {images.map((pic: string, index: number) => (
-            <ImageContainer>
+            <ImageContainer key={"PIC_" + index}>
               <Image
                 onClick={() => openLightBox(index)}
                 className="gallery-image"
                 src={pic}
                 alt={"PIC_" + index}
-                key={"PIC_" + index}
                 style={imageFilter}
               />
             </ImageContainer>

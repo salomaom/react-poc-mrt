@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 
 import { Column } from "react-table";
 
@@ -22,6 +22,9 @@ import pic5 from "@assets/images/pic_5.jpg";
 import pic6 from "@assets/images/pic_6.jpg";
 import pic7 from "@assets/images/pic_7.jpg";
 import pic8 from "@assets/images/pic_8.jpg";
+import Input from "./components/form/input";
+import Label from "./components/form/label";
+import SelectDemo from "./components/form/select";
 
 export type Data = {
   paymentType: string;
@@ -42,7 +45,13 @@ function App() {
 
   const connection = useRTClient();
 
+  const ocrInputRef = useRef(null);
+
   useHotkeys(keys[test], () => console.log("ATALHOOOOOOOO"), {
+    preventDefault: true,
+  });
+
+  useHotkeys("ctrl+q", () => ocrInputRef.current.focus(), {
     preventDefault: true,
   });
 
@@ -103,50 +112,75 @@ function App() {
     <>
       {/* <Button onClick={() => (test === 0 ? setTest(1) : setTest(0))}>
         TROCA: {keys[test]}
-      </Button>
-
+      </Button>*/}
       <Accordion.Container type="multiple" className="accordion-container">
         <Accordion.Item value="item1">
           <Accordion.Header>
             <Accordion.Trigger>Filtros</Accordion.Trigger>
           </Accordion.Header>
-          <Accordion.Content>
+          <Accordion.Content
+            style={{
+              display: "flex",
+              alignItems: "center",
+              width: "30%",
+              marginLeft: "24px",
+            }}
+          >
             <Form.Container>
               <Form.Field name="via">
                 <Form.Label>Via</Form.Label>
               </Form.Field>
             </Form.Container>
-            <input
+            <Input
               type="text"
               value={via}
               onChange={(e) => setVia(e.target.value)}
-            ></input>
+            />
             <Button onClick={sendFilter}>Enviar Filtro</Button>
           </Accordion.Content>
         </Accordion.Item>
-      </Accordion.Container> */}
-
+      </Accordion.Container>
       <div
-        style={{ display: "flex", padding: "50px", backgroundColor: "#F2F2F3" }}
+        style={{
+          backgroundColor: "#F2F2F3",
+          height: "100%",
+          padding: "0 0 24px",
+        }}
       >
-        <ImageGallery images={images} />
+        <div style={{ display: "flex", padding: "50px" }}>
+          <ImageGallery images={images} />
 
-        <div
-          style={{
-            width: "40%",
-            backgroundColor: "white",
-            margin: "8px",
-            borderRadius: "16px",
-            padding: "16px",
-          }}
-        >
-          <Button onClick={() => (test === 0 ? setTest(1) : setTest(0))}>
-            TROCA: {keys[test]}
-          </Button>
+          <div
+            style={{
+              width: "40%",
+              backgroundColor: "white",
+              margin: "8px",
+              borderRadius: "16px",
+              padding: "16px",
+            }}
+          >
+            <Form.Container>
+              <Form.Field name="ocr">
+                <Form.Label>OCR</Form.Label>
+                <Input type="text" ref={ocrInputRef} />
+              </Form.Field>
+            </Form.Container>
+            <Form.Container>
+              <Form.Field name="ocr">
+                <Form.Label>Formas de pagamento</Form.Label>
+                <SelectDemo />
+              </Form.Field>
+            </Form.Container>
+            <Button
+              style={{ marginTop: "88%" }}
+              onClick={() => (test === 0 ? setTest(1) : setTest(0))}
+            >
+              TROCA: {keys[test]}
+            </Button>
+          </div>
         </div>
+        <Table columns={columns} data={data} />
       </div>
-
-      <Table columns={columns} data={data} />
     </>
   );
 }
